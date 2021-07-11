@@ -30,12 +30,12 @@ public class Todolist extends Application {
     @Override
     public void start(Stage primaryStage) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("Todolist.fxml")); //Here we are loading all the app from FXML
-
-            Scene scene = new Scene(root);
-            primaryStage.setScene(scene);
-            primaryStage.setTitle("To-Do Lists");
-            primaryStage.show();
+            FXMLLoader mainLoad = new FXMLLoader(getClass().getResource("Todolist.fxml"));
+            Parent mainRoot = (Parent) mainLoad.load();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(mainRoot));
+            stage.setTitle("To-do List");
+            stage.show();
 
         }catch (IOException e){
             e.printStackTrace();

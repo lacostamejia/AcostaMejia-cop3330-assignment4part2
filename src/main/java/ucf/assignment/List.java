@@ -11,17 +11,13 @@ import java.util.ArrayList;
 
 public class List {
 
-    private String List_Name = "First";
+    public String List_Name;
     //Here we are going to create an array list to store the items inside this list
-    private ArrayList<String> List_Items; //Here we are going to store the items in this list
-   // ListItems hola = new ListItems("Comer","16-2-2021","Comer carne",false);
-
-
 
     //Constructor for the name Initialization
     public List(String List_Name) {
+
         this.List_Name = List_Name;
-        List_Items = new ArrayList<String>();
     }
 
     public String getList_Name() {
@@ -34,13 +30,6 @@ public class List {
         List_Name = list_Name;
     }
 
-    public ArrayList<String> getList_Items() {
-        return List_Items;
-    }
-
-    public void setList_Items(ArrayList<String> list_Items) {
-        List_Items = list_Items;
-    }
 
     public void Modify_List_Name(String Modified_List_Name){
         //Here we are going to modify the name of the list
@@ -58,6 +47,7 @@ public class List {
 
 
     public void DeleteList(){
+        this.List_Name = null;
         //We have to delete all the information of the list with this code
     }
 
@@ -92,6 +82,10 @@ public class List {
     public void Display_Incomplete_Items(){
         //Here we are going to display the incomplete items of the list.
 
+    }
+    @Override
+    public String toString(){
+        return this.getList_Name();
     }
 
 }

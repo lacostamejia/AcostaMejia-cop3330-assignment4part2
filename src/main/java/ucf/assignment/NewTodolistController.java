@@ -5,15 +5,30 @@ package ucf.assignment;
  *  Copyright 2021 Luis Andres Acosta Mejia
  */
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableArray;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextField;
+import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
+import java.io.IOException;
+import java.net.URL;
+import java.time.LocalDate;
+import java.util.ResourceBundle;
+
 public class NewTodolistController {
+
+
+
+    ObservableList<List> lists = FXCollections.observableArrayList(); //Saving all the lists
 
    private Alert alert = new Alert(Alert.AlertType.ERROR); //Here we are creating an alert to be used in any error interaction
     @FXML
@@ -26,36 +41,62 @@ public class NewTodolistController {
     private TextField NameListInput;
     @FXML
     private Button BtnCreateList;
+
+
     //Here we are going to have variables created for the name of the list, the new list, the information
     //We are going to pass as parameters. //The status of the item  is incomplete at first, we have to save this.
 
     @FXML
-    public void Create_List(ActionEvent actionEvent) {
+    public void Create_List(ActionEvent actionEvent) throws IOException {
+         String name_list = NameListInput.getText();
 
-        String name_list = NameListInput.getText();
+       //  FXMLLoader loader = new FXMLLoader(getClass().getResource("Todolist.fxml"));
+        // Parent root = loader.load();
+       //  TodolistController controller = loader.getController();
+
         //Checking if the name inputted is empty.
         if(name_list.isEmpty()){
             alert.setTitle("Error!");
             alert.setContentText("Error! The name of the item is empty");
             alert.showAndWait();
         }
-        System.out.println(name_list);
-        //Here we are going to be creating a new list with the name inputted.
-        //We have to check if the name is empty or NULL
-        //We have to use the class List and call it as a blue print, in order to access to the information of this class
+        else if(lists.contains(name_list)){ //Check this
+            alert.setTitle("Error!");
+            alert.setContentText("Error! The name of the item is already taken");
+            alert.showAndWait();
+        }
+        else{ //Working
+            lists.addAll(new List(name_list));
+            NameListInput.clear(); //Putting back to empty this space
+        }
+
     }
     @FXML
-    public void Close_New_todo_list(ActionEvent actionEvent) {
+    public void Close_New_todo_list(ActionEvent actionEvent) throws IOException { //Working
         //Here we are going to close this window.
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("Todolist.fxml"));
+        Parent root = loader.load();
+        TodolistController controller = loader.getController();
+        controller.ReceiveListinformation(lists);
+        /*
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.setTitle("To-do List");
+        stage.show();
+
+
+         */
         ((Stage)(((Button)actionEvent.getSource()).getScene().getWindow())).close();
+
     }
+   /*
     @FXML
     public void Add_item_new_todo_list(ActionEvent actionEvent) {
 
         String description = Description_Item.getText(); //Here we are getting the description
         String name_item = Name_Item.getText(); //Here we are getting the name of the item
 
-        String due_date = Due_Date.getAccessibleText(); //Check this
+        LocalDate due_date = Due_Date.getValue(); //Check this
         System.out.println(due_date);
 
 
@@ -71,11 +112,9 @@ public class NewTodolistController {
             alert.setContentText("Error! Check the description; the length should be from 1 to 256 characters; the description inputted has " + description.length() + " characters");
             alert.showAndWait();
         }
+        else{
 
-        //Here we are going to be adding items to the new list created.
-        //We have to check if there is an item with the same name imputed.
-        //If the name, due date or description is empty or NULL.
-        //We are going to set the status of the item at first as incomplete.
-        //We have to access to the ListItems class
-    }
+
+         }
+*/
 }

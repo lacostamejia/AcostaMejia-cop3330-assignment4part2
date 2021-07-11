@@ -13,6 +13,8 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
+import java.time.LocalDate;
+
 public class ModifyItemlistController {
 
     private Alert alert = new Alert(Alert.AlertType.ERROR); //Here we are creating an alert to be used in any error interaction
@@ -28,16 +30,13 @@ public class ModifyItemlistController {
     public void Save_Modified_Item(ActionEvent actionEvent) {
 
         String new_description_inputted = Modified_Description_Inputted.getText();
+        LocalDate modified_due_date = Modified_Due_Date.getValue();
 
-        if(new_description_inputted.isEmpty()){
+         if(new_description_inputted.length() < 1 || new_description_inputted.length() > 256){
             alert.setTitle("Error!");
             alert.setContentText("Error! The description is empty");
             alert.showAndWait();
-        }
-        else if(new_description_inputted.length() < 1 || new_description_inputted.length() > 256){
-            alert.setTitle("Error!");
-            alert.setContentText("Error! The description is empty");
-            alert.showAndWait();
+            Modified_Description_Inputted.clear();
         }
         /*Here we are going to first check if at least the description
         or the due date was changed, in order to be saved.

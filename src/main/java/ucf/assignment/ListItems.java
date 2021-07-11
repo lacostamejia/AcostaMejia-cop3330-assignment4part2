@@ -5,16 +5,18 @@ package ucf.assignment;
  *  Copyright 2021 Luis Andres Acosta Mejia
  */
 
+import java.time.LocalDate;
+
 public class ListItems {
     private String name;
-    private String due_date;
+    private LocalDate date;
     private String description_item;
     private boolean status;
 
     //Constructor for the name Initialization
-    public ListItems(String name, String due_date, String description_item, boolean status) {
+    public ListItems(String name, LocalDate due_date, String description_item, boolean status) {
         this.name = name;
-        this.due_date = due_date;
+        this.date = due_date;
         this.description_item = description_item;
         this.status = status = false;
     }
@@ -27,16 +29,24 @@ public class ListItems {
         this.name = name;
     }
 
-    public String getDue_date() {
-        return due_date;
+    public LocalDate getDue_date() {
+        return date;
     }
 
-    public void setDue_date(String due_date) {
-        this.due_date = due_date;
+    public void setDue_date(LocalDate due_date) {
+
+        this.date = due_date;
+    }
+    public boolean getStatus(){
+        return status;
+    }
+    public void setStatus(Boolean status){
+        this.status = status;
     }
 
-    public void modify_Due_date(String Modified_due_date){
-        due_date = Modified_due_date;
+    public void modify_Due_date(LocalDate Modified_due_date){
+
+        date = Modified_due_date;
     }
 
     public String getDescription_item() {
@@ -48,17 +58,17 @@ public class ListItems {
 
         this.description_item = description_item;
     }
-
-    public void modify_Description_Item(){
-        //Here we are going to modify the description of the item
-        //by searching the item we would like to modify
+    public void Delete_Item(){ //Deleting all the values of the Item (setting them to null)
+        this.name = null;
+        this.description_item = null;
+        this.status = false;
+        this.date = null;
     }
 
-    public void Delete_Item(String name){
-        //Here we are going to delete the item
-    }
-    public void Add_New_Item(){
-        //This is going to be used to add a new item and using the attributes above.
+    @Override
+    //Printing on the list view with a format
+    public String toString(){
+        return this.getName() + " " + "Due: " + this.getDue_date() + " " + this.getDescription_item();
     }
 
 }
