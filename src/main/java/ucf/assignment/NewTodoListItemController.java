@@ -11,10 +11,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
@@ -29,8 +26,6 @@ public class NewTodoListItemController {
 
     @FXML
     public DatePicker New_due_date;
-    @FXML
-    public TextField New_item_name;
     @FXML
     public TextField New_description;
     
@@ -50,17 +45,11 @@ public class NewTodoListItemController {
     @FXML
     public void AddNewItem(ActionEvent actionEvent) { //Check this part for the new due date invalid
 
-        String new_name_item = New_item_name.getText();
         String new_description_item = New_description.getText();
         String new_due_date = New_due_date.toString();
 
         //Checking if the name or description is empty
-        if(new_name_item.isEmpty()){ //Check how to add due date
-            alert.setTitle("Error!");
-            alert.setContentText("Error! The name/description/due_date of the item is empty");
-            alert.showAndWait();
-        }
-        else if(new_description_item.isEmpty()){
+         if(new_description_item.isEmpty()){
             alert.setTitle("Error!");
             alert.setContentText("Error! The description of the item is empty");
             alert.showAndWait();
@@ -79,7 +68,22 @@ public class NewTodoListItemController {
             alert.setContentText("Error! Check the description; the length should be from 1 to 256 characters; the description inputted has " + new_description_item.length() + " characters");
             alert.showAndWait();
         }
-        items.add(new ListItems(new_name_item,New_due_date.getValue(),new_description_item,false));
+        items.add(new ListItems(New_due_date.getValue(),new_description_item,false));
+        Dialog("The task was created successfully!");
+        New_description.clear();
 
+
+    }
+    public void Dialog(String x){ //This is a function to call a dialog!
+        //Creating a dialog
+        Dialog<String> dialog = new Dialog<String>();
+        //Setting the title
+        dialog.setTitle("!NEW Changes!");
+        ButtonType type = new ButtonType("Ok", ButtonBar.ButtonData.OK_DONE);
+        //Setting the content of the dialog
+        dialog.setContentText(x);
+        //Adding buttons to the dialog pane
+        dialog.getDialogPane().getButtonTypes().add(type);
+        dialog.showAndWait(); //Showing the dialog
     }
 }

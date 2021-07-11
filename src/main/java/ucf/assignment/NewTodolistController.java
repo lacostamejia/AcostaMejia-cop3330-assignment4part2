@@ -68,6 +68,7 @@ public class NewTodolistController {
         else{ //Working
             lists.addAll(new List(name_list));
             NameListInput.clear(); //Putting back to empty this space
+            Dialog("The list '" + name_list + "' was created successfully!");
         }
 
     }
@@ -78,6 +79,7 @@ public class NewTodolistController {
         Parent root = loader.load();
         TodolistController controller = loader.getController();
         controller.ReceiveListinformation(lists);
+
         /*
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
@@ -117,4 +119,17 @@ public class NewTodolistController {
 
          }
 */
+   public void Dialog(String x){ //This is a function to call a dialog!
+       //Creating a dialog
+       Dialog<String> dialog = new Dialog<String>();
+       //Setting the title
+       dialog.setTitle("!NEW Changes!");
+       ButtonType type = new ButtonType("Ok", ButtonBar.ButtonData.OK_DONE);
+       //Setting the content of the dialog
+       dialog.setContentText(x);
+       //Adding buttons to the dialog pane
+       dialog.getDialogPane().getButtonTypes().add(type);
+       dialog.showAndWait(); //Showing the dialog
+   }
 }
+

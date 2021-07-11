@@ -8,25 +8,15 @@ package ucf.assignment;
 import java.time.LocalDate;
 
 public class ListItems {
-    private String name;
     private LocalDate date;
     private String description_item;
     private boolean status;
 
     //Constructor for the name Initialization
-    public ListItems(String name, LocalDate due_date, String description_item, boolean status) {
-        this.name = name;
+    public ListItems(LocalDate due_date, String description_item, boolean status) {
         this.date = due_date;
         this.description_item = description_item;
         this.status = status = false;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public LocalDate getDue_date() {
@@ -59,7 +49,6 @@ public class ListItems {
         this.description_item = description_item;
     }
     public void Delete_Item(){ //Deleting all the values of the Item (setting them to null)
-        this.name = null;
         this.description_item = null;
         this.status = false;
         this.date = null;
@@ -68,7 +57,7 @@ public class ListItems {
     @Override
     //Printing on the list view with a format
     public String toString(){
-        return this.getName() + " " + "Due: " + this.getDue_date() + " " + this.getDescription_item();
+        return "Due: " + this.getDue_date() + " " + this.getDescription_item();
     }
 
 }

@@ -26,3 +26,4 @@ javafx {
 }
 
 mainClassName = 'ucf.assignment.Todolist'
+

@@ -15,9 +15,8 @@ public class List {
     //Here we are going to create an array list to store the items inside this list
 
     //Constructor for the name Initialization
-    public List(String List_Name) {
-
-        this.List_Name = List_Name;
+    public List(String List_name) {
+        this.List_Name = List_name;
     }
 
     public String getList_Name() {
@@ -42,6 +41,7 @@ public class List {
     }
 
     public void Create_List(){
+
         //Here we are going to be creating a new list.
     }
 

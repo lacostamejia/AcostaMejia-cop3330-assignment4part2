@@ -5,14 +5,9 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="173.0" prefWidth="368.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ucf.assignment.ModifyItemlistController">
    <children>
-      <Label layoutX="117.0" layoutY="7.0" prefHeight="29.0" prefWidth="177.0" text="Name_Item" AnchorPane.bottomAnchor="175.0" AnchorPane.leftAnchor="117.0" AnchorPane.rightAnchor="58.0">
-         <font>
-            <Font size="27.0" />
-         </font></Label>
       <Label layoutX="28.0" layoutY="78.0" prefHeight="17.0" prefWidth="91.0" text="New Description" AnchorPane.bottomAnchor="126.0" AnchorPane.leftAnchor="28.0" AnchorPane.rightAnchor="233.0" />
       <Label layoutX="35.0" layoutY="115.0" text="New Due Date" AnchorPane.bottomAnchor="89.0" AnchorPane.leftAnchor="35.0" AnchorPane.rightAnchor="240.0" />
       <DatePicker fx:id="Modified_Due_Date" layoutX="141.0" layoutY="111.0" AnchorPane.bottomAnchor="85.0" AnchorPane.leftAnchor="141.0" AnchorPane.rightAnchor="37.0" />

@@ -1,34 +1,27 @@
 package ucf.assignment;
 
-import javafx.beans.Observable;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableArray;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
-import javafx.stage.StageStyle;
+import javafx.stage.*;
 
-import javax.swing.text.View;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.net.URL;
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.StringTokenizer;
+
 
 /*
  *  UCF COP3330 Summer 2021 Assignment 4 Solution
@@ -44,6 +37,7 @@ public class TodolistController implements  Initializable{
     @FXML
     public CheckBox checkBoxCompleted_Items;
     public CheckBox checkBoxIncomplete_Items;
+    public AnchorPane MainWindow;
 
     private Alert alert = new Alert(Alert.AlertType.ERROR); //Here we are creating an alert to be used in any error interaction
 
@@ -68,10 +62,8 @@ public class TodolistController implements  Initializable{
     //We have to call the classes of List and List_Items
     //In order to operate with all the information
 
-    String name_item;
-    String description_item;
-    String Due_date_item;
-    Boolean status;
+    FileChooser fileChooser = new FileChooser();
+
 
     @FXML
     public void New_List(ActionEvent actionEvent) {
@@ -105,7 +97,62 @@ public class TodolistController implements  Initializable{
     //We can check on how to create transform a JSON file to an observable list array;
     //we can load it into a new list here, and then add it to all the lists array, and display it back again with lists.addall(x) , viewlist.setItemslists).
     @FXML
-    public void Load_List(ActionEvent actionEvent) {
+    public void Load_List(ActionEvent actionEvent) { //Working, practice more on this
+
+
+        ////We have to call the list class
+        //We are going to use the method declared on this list class to save the list
+        Window stage = MainWindow.getScene().getWindow();
+        //JSONParser parser = new JSONParser();
+        fileChooser.setTitle("Load To-do List");
+        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Text file", "*.txt"));
+
+        try{
+            File file = fileChooser.showOpenDialog(stage);
+            fileChooser.setInitialDirectory(file.getParentFile()); //Save the chosen directory
+
+            FileReader f = new FileReader(file.getPath());
+            BufferedReader bf = new BufferedReader(f);
+
+            String st = bf.readLine();
+
+            while((st = bf.readLine()) != null){
+                StringTokenizer stn = new StringTokenizer(st);
+                String name_list = stn.nextToken();
+
+                System.out.println(name_list);
+                lists.add(new List(name_list));
+
+                String due_date = stn.nextToken();
+                String description = stn.nextToken();
+                String status = stn.nextToken();
+                boolean status_x = false;
+
+                System.out.println(due_date);
+                System.out.println(description);
+                System.out.println(status);
+
+              //  DateTimeFormatter formatter= DateTimeFormatter.ofPattern("yyyy-mm-dd");
+               // LocalDate date = LocalDate.parse(due_date,formatter);
+               // System.out.println(date);
+
+                if(status.toLowerCase().equals("false")){
+                     status_x = false;
+                }
+                else{
+                     status_x = true;
+                }
+
+                items.add(new ListItems(null,description,status_x));
+
+                System.out.println(due_date);
+                System.out.println(description);
+                System.out.println(status);
+            }
+
+        }catch (Exception ex){
+
+        }
 /*
         ArrayList<String> list = new ArrayList<String>();
         JSONArray jsonArray = (JSONArray)jsonObject;
@@ -141,7 +188,6 @@ public class TodolistController implements  Initializable{
     public void Show_Item_Information(MouseEvent event) {
 
         int index =  ViewItems.getSelectionModel().getSelectedIndex();
-        Iten_name_selected.setText(items.get(index).getName());
         Description_label.setText(items.get(index).getDescription_item());
         Due_date_label.setText(items.get(index).getDue_date().toString());
         //If true
@@ -203,14 +249,25 @@ public class TodolistController implements  Initializable{
         }
         int index = ViewItems.getSelectionModel().getSelectedIndex(); //Here we are getting the index of the list that was selected; in order to delete this one from the array too
         ViewItems.getSelectionModel().getSelectedItem().Delete_Item(); //Here we are calling the method from the list class that is going to set tu null the name
-        Dialog("The item '" + items.get(index).getName() + "' was deleted!"); //Showing a dialog box message.
+        Dialog("The item was deleted!"); //Showing a dialog box message.
         items.remove(index); //Here we are removing it from the array list.
     }// Working but check again for mistakes.
 
     @FXML
-    public void Save_List(ActionEvent actionEvent) {
+    public void Save_List(ActionEvent actionEvent) { //Work more on this.
         ////We have to call the list class
         //We are going to use the method declared on this list class to save the list
+        Window stage = MainWindow.getScene().getWindow();
+        fileChooser.setTitle("save");
+        fileChooser.setInitialFileName("To_do_list");
+        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("text file", "*.txt"));
+
+        try{
+            File file = fileChooser.showSaveDialog(stage);
+            fileChooser.setInitialDirectory(file.getParentFile()); //Save the chosen directory
+        }catch (Exception ex){
+
+        }
     }
 
     @FXML
@@ -230,14 +287,14 @@ public class TodolistController implements  Initializable{
                 items.get(index).setStatus(false);
                 Status_Item.setText("Incomplete!");
                 Status_Item.setTextFill(Color.web("#ff0000", 1.0)); //To show on green the status immediately.
-                Dialog("The item '" + items.get(index).getName() + "' was changed to a status of 'incomplete'"); //Showing a dialog box message.
+                Dialog("The item was changed to a status of 'incomplete'"); //Showing a dialog box message.
 
             }
             else { //Setting the status to true is false
                 items.get(index).setStatus(true);
                 Status_Item.setText("Completed!");
                 Status_Item.setTextFill(Color.web("#00FF00", 1.0)); //To show on green the status immediately.
-                Dialog("The item '" + items.get(index).getName() + "' was changed to a status of 'completed'"); //Showing a dialog box message.
+                Dialog("The item was changed to a status of 'completed'"); //Showing a dialog box message.
             }
         }
 
@@ -383,9 +440,7 @@ public class TodolistController implements  Initializable{
     public void initialize(URL location, ResourceBundle resources) {
        ViewList.setItems(lists);
        ViewItems.setItems(items);
-
-       // System.out.println(lists);
-
+       fileChooser.setInitialDirectory(new File("C:/Users/thelu/Desktop"));
 
     }
 

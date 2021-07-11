@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="569.0" prefWidth="742.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ucf.assignment.TodolistController">
+<AnchorPane fx:id="MainWindow" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="569.0" prefWidth="742.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ucf.assignment.TodolistController">
    <children>
       <MenuBar layoutY="2.0" prefHeight="25.0" prefWidth="134.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="2.0">
         <menus>
@@ -63,25 +63,26 @@
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="232.0" prefWidth="643.0">
                <children>
-                  <Label fx:id="Due_date_label" layoutX="458.0" layoutY="77.0" prefHeight="29.0" prefWidth="153.0" text="Select an item first ..." textAlignment="CENTER" />
+                  <Label fx:id="Due_date_label" layoutX="398.0" layoutY="50.0" prefHeight="29.0" prefWidth="153.0" text="Select an item first ..." textAlignment="CENTER" />
                   <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#New_Item" prefHeight="25.0" prefWidth="80.0" text="New Item" AnchorPane.bottomAnchor="227.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="646.0" />
                   <Button layoutX="14.0" layoutY="52.0" mnemonicParsing="false" onAction="#Delete_Item" prefHeight="25.0" prefWidth="80.0" text="Delete Item" AnchorPane.bottomAnchor="189.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="646.0" />
                   <Button layoutX="14.0" layoutY="91.0" mnemonicParsing="false" onAction="#Save_List" prefHeight="25.0" prefWidth="80.0" text="Save List" AnchorPane.bottomAnchor="150.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="646.0" />
                   <RadioButton fx:id="rdButtonCompleted" layoutX="584.0" layoutY="48.0" mnemonicParsing="false" onAction="#Item_Is_Completed" text="Completed/Incomplete" AnchorPane.bottomAnchor="201.0" AnchorPane.rightAnchor="12.0" />
-                  <Label fx:id="Iten_name_selected" layoutX="328.0" layoutY="12.0" text="Item_name" textAlignment="CENTER" AnchorPane.bottomAnchor="231.0" AnchorPane.rightAnchor="299.0">
+                  <Label layoutX="192.0" layoutY="17.0" prefHeight="21.0" prefWidth="109.0" text="Description" AnchorPane.bottomAnchor="228.0" AnchorPane.rightAnchor="439.0">
                      <font>
-                        <Font name="Times New Roman" size="25.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="231.0" layoutY="56.0" prefHeight="17.0" prefWidth="67.0" text="Description" AnchorPane.bottomAnchor="193.0" AnchorPane.rightAnchor="442.0" />
-                  <Label layoutX="498.0" layoutY="56.0" text="Due_Date" AnchorPane.bottomAnchor="193.0" AnchorPane.rightAnchor="190.0" />
+                        <Font size="15.0" />
+                     </font></Label>
+                  <Label layoutX="418.0" layoutY="16.0" prefHeight="21.0" prefWidth="80.0" text="Due_Date" AnchorPane.bottomAnchor="229.0" AnchorPane.rightAnchor="242.0">
+                     <font>
+                        <Font size="15.0" />
+                     </font></Label>
                   <Label layoutX="566.0" layoutY="19.0" text="Status:" AnchorPane.bottomAnchor="230.0" AnchorPane.rightAnchor="138.0" />
                   <CheckBox fx:id="checkBoxCompleted_Items" layoutX="209.0" layoutY="235.0" mnemonicParsing="false" onAction="#Show_Completed_Items" text="Show Completed Items" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="387.0" />
                   <CheckBox fx:id="checkBoxIncomplete_Items" layoutX="385.0" layoutY="235.0" mnemonicParsing="false" onAction="#Show_Incomplete_Items" text="Show Incomplete Items" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="210.0" />
                   <Button layoutX="14.0" layoutY="129.0" mnemonicParsing="false" onAction="#Delete_List" prefHeight="25.0" prefWidth="80.0" text="Delete List" AnchorPane.bottomAnchor="112.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="646.0" />
                   <Button layoutX="14.0" layoutY="170.0" mnemonicParsing="false" onAction="#Edit_Name_List" prefHeight="25.0" prefWidth="80.0" text="Edit Name" AnchorPane.bottomAnchor="71.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="646.0" />
                   <Button layoutX="345.0" layoutY="195.0" mnemonicParsing="false" onAction="#Modify_Item" text="Modify Item" AnchorPane.bottomAnchor="46.0" AnchorPane.rightAnchor="314.0" />
-                  <Label fx:id="Description_label" layoutX="178.0" layoutY="74.0" prefHeight="53.0" prefWidth="207.0" text="Select an item first ..." textAlignment="CENTER" />
+                  <Label fx:id="Description_label" layoutX="143.0" layoutY="39.0" prefHeight="53.0" prefWidth="207.0" text="Select an item first ..." textAlignment="CENTER" />
                   <Label fx:id="Status_Item" layoutX="608.0" layoutY="18.0" prefHeight="17.0" prefWidth="126.0" text="N/A">
                      <font>
                         <Font size="14.0" />

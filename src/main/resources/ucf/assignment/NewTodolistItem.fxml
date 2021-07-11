@@ -7,27 +7,21 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="229.0" prefWidth="420.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ucf.assignment.NewTodoListItemController">
+<AnchorPane prefHeight="191.0" prefWidth="407.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ucf.assignment.NewTodoListItemController">
    <children>
-      <Button layoutX="165.0" layoutY="157.0" mnemonicParsing="false" onAction="#AddNewItem" prefHeight="41.0" prefWidth="67.0" text="Add" />
-      <DatePicker fx:id="New_due_date" layoutX="204.0" layoutY="105.0" />
-      <Label layoutX="14.0" layoutY="23.0" text="Name of the new item:">
+      <Button layoutX="143.0" layoutY="137.0" mnemonicParsing="false" onAction="#AddNewItem" prefHeight="41.0" prefWidth="67.0" text="Add" />
+      <DatePicker fx:id="New_due_date" layoutX="204.0" layoutY="87.0" />
+      <Label layoutX="29.0" layoutY="88.0" text="Due date:">
          <font>
             <Font name="Times New Roman" size="20.0" />
          </font>
       </Label>
-      <Label layoutX="14.0" layoutY="106.0" text="Due date:">
+      <Label layoutX="29.0" layoutY="40.0" text="Description:">
          <font>
             <Font name="Times New Roman" size="20.0" />
          </font>
       </Label>
-      <Label layoutX="14.0" layoutY="65.0" text="Description:">
-         <font>
-            <Font name="Times New Roman" size="20.0" />
-         </font>
-      </Label>
-      <TextField fx:id="New_item_name" layoutX="204.0" layoutY="22.0" prefHeight="25.0" prefWidth="174.0" />
-      <TextField fx:id="New_description" layoutX="204.0" layoutY="64.0" prefHeight="25.0" prefWidth="174.0" />
-      <Button layoutX="247.0" layoutY="157.0" mnemonicParsing="false" onAction="#CloseNewItem_Window" prefHeight="41.0" prefWidth="67.0" text="Close" />
+      <TextField fx:id="New_description" layoutX="204.0" layoutY="39.0" prefHeight="25.0" prefWidth="174.0" />
+      <Button layoutX="230.0" layoutY="137.0" mnemonicParsing="false" onAction="#CloseNewItem_Window" prefHeight="41.0" prefWidth="67.0" text="Close" />
    </children>
 </AnchorPane>
