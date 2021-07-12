@@ -7,8 +7,6 @@ package ucf.assignment;
 
 //List
 
-import java.util.ArrayList;
-
 public class List {
 
     public String List_Name;
@@ -23,10 +21,16 @@ public class List {
 
         return List_Name;
     }
+    public void Create_NewList(String List_name){
+        this.List_Name = List_name;
+    }
 
-    public void setList_Name(String list_Name) {
-
+    public String setList_Name(String list_Name) {
         List_Name = list_Name;
+        return  List_Name;
+    }
+    public void RemoveList(){
+        List_Name = null;
     }
 
 
@@ -35,29 +39,21 @@ public class List {
         List_Name = Modified_List_Name;
     }
 
-    public void Search(){
-        //Here we are going to be using this method to search for a particular
-        //item on a list.
-    }
 
-    public void Create_List(){
-
-        //Here we are going to be creating a new list.
-    }
-
-
-    public void DeleteList(){
+    public String  DeleteList(){
         this.List_Name = null;
+        return List_Name;
         //We have to delete all the information of the list with this code
     }
 
-    public void SaveList(){
-
+    public String SaveList(){
+        return List_Name;
         //Here we are planning to save the list
 
     }
-    public void LoadList(){
-
+    public String LoadList(String name){
+        this.List_Name = name;
+        return  List_Name;
         //Here we are going to be using it as a setter since we are going to load a list to operate with
 
     }
@@ -71,18 +67,11 @@ public class List {
 
     }
 
-    public void Display_List_Items(){
+    public String Display_List_Items(){
+        return List_Name;
         //Here we are going to display the completed items of the list
     }
 
-    public void Display_Completed_Items(){
-        //Here we are going to display the completed items of the list
-
-    }
-    public void Display_Incomplete_Items(){
-        //Here we are going to display the incomplete items of the list.
-
-    }
     @Override
     public String toString(){
         return this.getList_Name();

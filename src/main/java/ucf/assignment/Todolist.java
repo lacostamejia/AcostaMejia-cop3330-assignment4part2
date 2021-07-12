@@ -6,7 +6,6 @@
 package ucf.assignment;
 
 import javafx.application.Application;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -30,6 +29,7 @@ public class Todolist extends Application {
     @Override
     public void start(Stage primaryStage) {
         try {
+            //Launching the main controller with the window
             FXMLLoader mainLoad = new FXMLLoader(getClass().getResource("Todolist.fxml"));
             Parent mainRoot = (Parent) mainLoad.load();
             Stage stage = new Stage();

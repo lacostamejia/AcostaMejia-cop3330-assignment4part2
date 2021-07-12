@@ -6,23 +6,15 @@ package ucf.assignment;
  */
 
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableArray;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.net.URL;
-import java.time.LocalDate;
-import java.util.ResourceBundle;
 
 public class NewTodolistController {
 
@@ -74,51 +66,18 @@ public class NewTodolistController {
     }
     @FXML
     public void Close_New_todo_list(ActionEvent actionEvent) throws IOException { //Working
-        //Here we are going to close this window.
+        //Sending information to the main controller
         FXMLLoader loader = new FXMLLoader(getClass().getResource("Todolist.fxml"));
         Parent root = loader.load();
         TodolistController controller = loader.getController();
         controller.ReceiveListinformation(lists);
 
-        /*
-        Stage stage = new Stage();
-        stage.setScene(new Scene(root));
-        stage.setTitle("To-do List");
-        stage.show();
-
-
-         */
+        //Closing window
         ((Stage)(((Button)actionEvent.getSource()).getScene().getWindow())).close();
 
     }
-   /*
-    @FXML
-    public void Add_item_new_todo_list(ActionEvent actionEvent) {
-
-        String description = Description_Item.getText(); //Here we are getting the description
-        String name_item = Name_Item.getText(); //Here we are getting the name of the item
-
-        LocalDate due_date = Due_Date.getValue(); //Check this
-        System.out.println(due_date);
 
 
-         if(description.isEmpty() || name_item.isEmpty()){ //Checking if they are empty
-            alert.setTitle("Error!");
-            alert.setContentText("Error! The description/name of the item is empty");
-            alert.showAndWait();
-
-        }
-        //Here we are checking the length of the description, in order to give an error or not
-        else if(description.length() < 1 || description.length() > 256){
-            alert.setTitle("Error!");
-            alert.setContentText("Error! Check the description; the length should be from 1 to 256 characters; the description inputted has " + description.length() + " characters");
-            alert.showAndWait();
-        }
-        else{
-
-
-         }
-*/
    public void Dialog(String x){ //This is a function to call a dialog!
        //Creating a dialog
        Dialog<String> dialog = new Dialog<String>();

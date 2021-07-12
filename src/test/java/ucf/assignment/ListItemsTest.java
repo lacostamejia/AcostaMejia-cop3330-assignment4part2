@@ -1,46 +1,87 @@
 package ucf.assignment;
 
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
+import java.time.LocalDate;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-/*
- *  UCF COP3330 Summer 2021 Assignment 4 Solution
- *  Copyright 2021 Luis Andres Acosta Mejia
- */
-
 class ListItemsTest {
-/*
-    A user shall be able to add a new item to an existing todo list -
-    A user shall be able to remove an item from an existing todo list -
-    A user shall be able to edit the description of an item within an existing todo list -
-    A user shall be able to edit the due date of an item within an existing todo list -
+    //Here are the variables and settings used to check the tests.
+    String date = "2021-11-30";
+    String datechanged = "2021-07-30";
+    LocalDate localDate = LocalDate.parse(date); //We are parsing the string read of the due date to be a localdate so we can operate it.
+    LocalDate localDateChanged = LocalDate.parse(datechanged);
+    ListItems x = new ListItems(localDate,"Family Born",false);
 
-     */
     @Test
-    @DisplayName("Add a new item to the to do list")
-    void Add_New_Item(){
-        //Here we are going to check if the item is being added correctly to the current selected to-do list
+    void getDue_date() {
+        //Here we are checking if we are getting the correct due date.
+        assertEquals(localDate,x.getDue_date());
     }
 
     @Test
-    @DisplayName("Remove an item")
-    void Remove_Item(){
-        //Here we are going to be checking if the item is being removed correctly to the current selected to-do list.
+    void setDue_date() {
+        //Here we are checking if we are setting the correct due date.
+        assertEquals(localDateChanged,x.setDue_date(localDateChanged));
     }
 
     @Test
-    @DisplayName("Edit the description of an item")
-    void Edit_Description(){
-        //Here we are going to be checking if the description of the item is being modified correctly
+    void getStatus() {
+        //Here we are checking if we are getting the correct status item.
+        assertEquals(false,x.getStatus());
+
+    }
+    @Test
+    void setStatus() {
+        //Here we are checking if the item status is being settled correctly.
+        assertEquals(true,x.setStatus(true));
     }
 
     @Test
-    @DisplayName("Edit the due date of an item")
-    void Edit_Due_Date(){
-        //Here we are going to be checking if the due date of the item is being modified correctly.
+    void modify_Due_date() {
+        //Here we are checking if the item due date is being modified correctly.
+        assertEquals(localDateChanged,x.modify_Due_date(localDateChanged));
     }
 
+    @Test
+    void modify_description() {
+        //Here we are checking if the item description is being modified correctly.
+        assertEquals("hola",x.modify_description("hola"));
+    }
 
+    @Test
+    void getDescription_item() {
+        //Here we are checking if we are getting the correct description of the item
+        assertEquals("Family Born",x.getDescription_item());
+    }
+
+    @Test
+    void setDescription_item() {
+        //Here we are checking if the item description was settled correctly.
+        assertEquals("hola",x.setDescription_item("hola"));
+    }
+
+    @Test
+    void delete_Item() {
+        //Here we are setting deleting all the values and checking if they are null which is empty.
+        x.Delete_Item();
+        assertEquals(null, x.getDescription_item());
+        assertEquals(null, x.getDue_date());
+        assertEquals(false, x.getStatus());
+    }
+
+    @Test
+    void display_Completed_Items() {
+        //Here we are setting the value to true, in order to be tested
+        x.setStatus(true);
+        assertEquals(true, x.getStatus());
+    }
+
+    @Test
+    void display_Incomplete_Items() {
+        //Here we are setting the value to false, in order to be tested
+        x.setStatus(false);
+        assertEquals(false, x.getStatus());
+    }
 }

@@ -27,17 +27,19 @@ public class ModifyItemlistController {
     //modify.
 
     @FXML
-    public void Save_Modified_Item(ActionEvent actionEvent) {
+    public void Save_Modified_Item(ActionEvent actionEvent){
+        //Loading from the todolist controller
+            String new_description_inputted = Modified_Description_Inputted.getText();
+            LocalDate modified_due_date = Modified_Due_Date.getValue();
 
-        String new_description_inputted = Modified_Description_Inputted.getText();
-        LocalDate modified_due_date = Modified_Due_Date.getValue();
+            if (new_description_inputted.length() < 1 || new_description_inputted.length() > 256) {
+                alert.setTitle("Error!");
+                alert.setContentText("Error! The description is empty");
+                alert.showAndWait();
+                Modified_Description_Inputted.clear();
+            }
 
-         if(new_description_inputted.length() < 1 || new_description_inputted.length() > 256){
-            alert.setTitle("Error!");
-            alert.setContentText("Error! The description is empty");
-            alert.showAndWait();
-            Modified_Description_Inputted.clear();
-        }
+
         /*Here we are going to first check if at least the description
         or the due date was changed, in order to be saved.
         Then we are going to update the list by changing the item that we selected.

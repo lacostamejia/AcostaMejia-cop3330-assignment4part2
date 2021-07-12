@@ -12,16 +12,14 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
-import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.time.LocalDate;
 
 public class NewTodoListItemController {
 
 
-    ObservableList<ListItems> items = FXCollections.observableArrayList();
+    ObservableList<ListItems> items = FXCollections.observableArrayList(); //Used to save all the tasks created
     private Alert alert = new Alert(Alert.AlertType.ERROR); //Here we are creating an alert to be used in any error interaction
 
     @FXML
@@ -34,6 +32,7 @@ public class NewTodoListItemController {
     @FXML
     public void CloseNewItem_Window(ActionEvent actionEvent) throws IOException {
 
+        //Sending back the information to the main controller
         FXMLLoader loader = new FXMLLoader(getClass().getResource("Todolist.fxml"));
         Parent root = loader.load();
         TodolistController controller = loader.getController();
@@ -41,12 +40,11 @@ public class NewTodoListItemController {
 
         ((Stage)(((Button)actionEvent.getSource()).getScene().getWindow())).close();
         //Closing Window
-    }
+    } //Completed
     @FXML
-    public void AddNewItem(ActionEvent actionEvent) { //Check this part for the new due date invalid
+    public void AddNewItem(ActionEvent actionEvent) {
 
         String new_description_item = New_description.getText();
-        String new_due_date = New_due_date.toString();
 
         //Checking if the name or description is empty
          if(new_description_item.isEmpty()){
@@ -54,11 +52,12 @@ public class NewTodoListItemController {
             alert.setContentText("Error! The description of the item is empty");
             alert.showAndWait();
         }
-        else if(new_due_date.isEmpty()){
+        else if(New_due_date.getValue() == null){
             alert.setTitle("Error!");
             alert.setContentText("Error! The due date selection is empty!");
             alert.showAndWait();
         }
+
         //Check if the due_date is invalid.
         //Do one more else if for the due_date checking
 
@@ -68,12 +67,15 @@ public class NewTodoListItemController {
             alert.setContentText("Error! Check the description; the length should be from 1 to 256 characters; the description inputted has " + new_description_item.length() + " characters");
             alert.showAndWait();
         }
-        items.add(new ListItems(New_due_date.getValue(),new_description_item,false));
-        Dialog("The task was created successfully!");
-        New_description.clear();
+        else { //If there is not any issues
+             items.add(new ListItems(New_due_date.getValue(), new_description_item, false));
+             Dialog("The task was created successfully!");
+             New_description.clear(); //Clear text for another item
+             New_due_date.setValue(null); //Clear due date for another item
+         }
 
+    }//Completed
 
-    }
     public void Dialog(String x){ //This is a function to call a dialog!
         //Creating a dialog
         Dialog<String> dialog = new Dialog<String>();
@@ -85,5 +87,5 @@ public class NewTodoListItemController {
         //Adding buttons to the dialog pane
         dialog.getDialogPane().getButtonTypes().add(type);
         dialog.showAndWait(); //Showing the dialog
-    }
+    } //Completed
 }
