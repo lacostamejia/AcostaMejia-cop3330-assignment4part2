@@ -36,4 +36,7 @@ First select the list which you would like to display all the incomplete items f
 #Delete All Tasks
 First select the item from the Tasks view shown. Then click the button 'Delete All Tasks'; All the tasks from this list will be deleted.
 
+#Thank you
+#Luis Andres Acosta Mejia
+
 
