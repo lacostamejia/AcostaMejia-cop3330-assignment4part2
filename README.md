@@ -1,6 +1,6 @@
 # AcostaMejia-cop3330-assignment4part2
 
-#How to use the To-do list program (dedicated by Rey)
+#How to use the To-do list program (dedicated to Rey)
 
 #Creating a new To-do List.
 Click the menu button on top where states 'File'; then select 'New to-do list'.
